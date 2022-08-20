@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { logout } from "../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../app/actions/authActions";
+import NavbarGamePage from "./AppBarGamePage";
 
 const GamePage = ({ setUserDetails }) => {
   useEffect(() => {
@@ -13,7 +14,11 @@ const GamePage = ({ setUserDetails }) => {
     }
   });
 
-  return <div>GamePage</div>;
+  return (
+    <div>
+      <NavbarGamePage />
+    </div>
+  );
 };
 
 const mapActionsToProps = (dispatch) => {
