@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes");
+const gameRoutes = require("./routes/gameRoutes");
 
 // include dotenv
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 // Register the routes
 app.use("/api/auth", authRoutes);
+app.use("/api/game", gameRoutes);
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));

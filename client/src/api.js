@@ -47,7 +47,31 @@ export const register = async (data) => {
   }
 };
 
+export const getScores = async () => {
+  try {
+    return await apiClient.get("/game/getgames");
+  } catch (exception) {
+    checkResponseCode(exception);
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
 // Secure Roots
+
+export const postScore = async (data) => {
+  try {
+    return await apiClient.post("/game/add", data);
+  } catch (exception) {
+    checkResponseCode(exception);
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
 
 const checkResponseCode = (exception) => {
   const responseCode = exception?.response?.status;
