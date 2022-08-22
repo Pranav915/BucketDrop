@@ -30,7 +30,7 @@ const AppBarGamePage = ({
   // };
 
   useEffect(() => {
-    if (time <= 0) {
+    if (time === 0) {
       postScore({ score }, navigate);
     }
   });

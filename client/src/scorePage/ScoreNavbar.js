@@ -18,7 +18,7 @@ const ScoreNavbar = () => {
   };
 
   return (
-    <nav className="container flex justify-between px-4 py-3 mx-auto bg-purple-600 top-0">
+    <nav className="flex justify-between px-4 py-3 mx-auto bg-purple-600 top-0">
       <div>
         <h3 className="text-2xl font-medium text-yellow-50 align-middle mt-1">
           BucketDrop

@@ -29,20 +29,22 @@ const ScorePage = ({ getScores }) => {
         <div className="m-auto w-max mt-14 text-3xl text-purple-600 bg-white px-4 py-2 rounded-2xl">
           Latest Scores
         </div>
-        <div className="flex flex-col mt-8 bg-white w-max m-auto rounded-2xl">
-          <ScoreItem id="Index" username="Username" score="Score" />
-          {scores ? (
-            scores.map((f, index) => (
-              <ScoreItem
-                key={f._id}
-                id={index + 1}
-                username={f.user.username}
-                score={f.score}
-              />
-            ))
-          ) : (
-            <div className="container">No Scores to display!</div>
-          )}
+        <div className="w-max m-auto">
+          <div className="flex flex-col mt-8 bg-white rounded-2xl">
+            <ScoreItem id="Index" username="Username" score="Score" />
+            {scores ? (
+              scores.map((f, index) => (
+                <ScoreItem
+                  key={f._id}
+                  id={index + 1}
+                  username={f.user.username}
+                  score={f.score}
+                />
+              ))
+            ) : (
+              <div className="container p">No Scores to display!</div>
+            )}
+          </div>
         </div>
       </div>
     </>

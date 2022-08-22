@@ -28,7 +28,7 @@ const Game = ({
 
   const increaseNum = () => {
     var gar = document.getElementById("gar");
-    if (y <= 680) {
+    if (y <= 680 && window.innerHeight - gar.getBoundingClientRect().top > 10) {
       gar.hidden = true;
       let elemBelow = document.elementFromPoint(x, y);
       gar.hidden = false;
@@ -42,7 +42,12 @@ const Game = ({
         if (currentDroppable) {
           setScore((score) => score + 1);
           setIdx(Math.floor(Math.random() * imgArray.length));
-          setX(Math.floor(Math.random() * 1000));
+          setX(
+            Math.floor(
+              (Math.random() * window.innerWidth * 17) / 20 +
+                window.innerWidth / 20
+            )
+          );
           clearInterval(requestRef.current);
           setY(90);
           gar.onmouseup = null;
@@ -54,7 +59,10 @@ const Game = ({
       });
     } else {
       setIdx(Math.floor(Math.random() * imgArray.length));
-      setX(Math.floor(Math.random() * 1000));
+      setX(
+        Math.floor((Math.random() * window.innerWidth * 17) / 20) +
+          window.innerWidth / 20
+      );
       clearInterval(requestRef.current);
       setY(90);
     }
@@ -88,6 +96,22 @@ const Game = ({
     moveAt(event.pageX, event.pageY);
 
     function onMouseMove(event) {
+      if (
+        event.pageX > window.innerWidth - window.innerWidth / 20 ||
+        event.pageY > window.innerHeight - window.innerHeight / 20 ||
+        event.pageX < window.innerWidth / 15 ||
+        event.pageY < 110
+      ) {
+        document.removeEventListener("mousemove", onMouseMove);
+        if (event.pageX > window.innerWidth - window.innerWidth / 12) {
+          setX(window.innerWidth - window.innerWidth / 12);
+        } else if (event.pageX < window.innerWidth / 15) {
+          setX(window.innerHeight / 14);
+        }
+        gar.onmouseup = null;
+        setFallState(true);
+        return;
+      }
       moveAt(event.pageX, event.pageY);
 
       gar.hidden = true;
@@ -131,7 +155,7 @@ const Game = ({
 
   return (
     <>
-      <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
+      <div>
         <div
           className="garbage w-max"
           ref={fieldRef}
@@ -141,8 +165,12 @@ const Game = ({
         >
           <img src={imgArray[idx]} alt="Garbage" />
         </div>
-        <div className="absolute bottom-4 left-1/3 w-28 lg:w-40 droppable">
-          <img src="/images/dustbin.png" alt="Dustbin" />
+        <div className="absolute bottom-4 " style={{ width: "100%" }}>
+          <img
+            src="/images/dustbin.png"
+            alt="Dustbin"
+            className="m-auto w-28 lg:w-40 droppable"
+          />
         </div>
       </div>
     </>
