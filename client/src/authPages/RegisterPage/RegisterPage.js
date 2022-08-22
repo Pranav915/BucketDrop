@@ -45,9 +45,9 @@ const RegisterPage = ({ register }) => {
 
   return (
     <>
-      <AuthPageNavbar handleClick={navigateLogin} btnTxt="Login" />
-      <div className="h-screen bg-gradient-to-r from-cyan-500 to-purple-500 pt-28 px-1">
-        <div className="flex">
+      <div className="h-screen bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
+        <AuthPageNavbar handleClick={navigateLogin} btnTxt="Login" />
+        <div className="flex pt-20 px-1">
           <div className="flex-col flex ml-auto mr-auto items-center w-full lg:w-2/3 md:w-3/5 sm:w-2/3">
             <h1 className="font-bold lg:text-3xl md:text-3xl sm:text-2xl my-10 text-white">
               {" "}

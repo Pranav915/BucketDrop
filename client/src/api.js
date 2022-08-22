@@ -1,7 +1,7 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
 
-// const url = "https://connect915.herokuapp.com/api";
+// const url = "https://bucket-drop.herokuapp.com/api";
 
 const url = "http://localhost:5002/api";
 

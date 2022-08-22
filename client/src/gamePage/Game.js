@@ -76,8 +76,13 @@ const Game = ({
     gar.style.zIndex = 1000;
 
     function moveAt(pageX, pageY) {
-      gar.style.left = pageX - shiftX + "px";
-      gar.style.top = pageY - shiftY + "px";
+      if (
+        (pageX > 0 || pageX < window.innerWidth) &&
+        (pageY > 0 || pageY < window.innerHeight)
+      ) {
+        gar.style.left = pageX - shiftX + "px";
+        gar.style.top = pageY - shiftY + "px";
+      }
     }
 
     moveAt(event.pageX, event.pageY);
