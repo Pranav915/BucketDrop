@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/game" element={<GamePage />} />
           <Route exact path="/home" element={<ScorePage />} />
-          <Route exact path="/" element={<Navigate to="/game" />} />
+          <Route exact path="/" element={<Navigate to="/home" />} />
         </Routes>
       </Router>
       <AlertNotification />

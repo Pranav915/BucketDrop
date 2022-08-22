@@ -1,7 +1,7 @@
 import { gameActions } from "../actions/gameActions";
 
 const initState = {
-  scores: null,
+  scores: [],
 };
 
 const reducer = (state = initState, action) => {

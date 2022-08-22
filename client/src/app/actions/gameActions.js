@@ -39,11 +39,11 @@ export const getScores = () => {
   return async (dispatch) => {
     const response = await api.getScores();
     if (response.error) {
-      console.log("response", response);
       dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
-      const { scores } = response?.data;
-      dispatch(setScores(scores));
+      const scores = response?.data;
+      setScores(scores);
+      return scores;
     }
   };
 };

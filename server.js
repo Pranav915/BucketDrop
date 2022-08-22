@@ -8,7 +8,6 @@ const gameRoutes = require("./routes/gameRoutes");
 
 // include dotenv
 dotenv.config();
-// const authRoutes = require("./routes/authRoutes");
 
 const PORT = process.env.PORT || parseInt(process.env.API_PORT);
 const app = express();

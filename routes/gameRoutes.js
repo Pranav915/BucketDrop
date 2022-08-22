@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const gameControllers = require("../controllers/game/gameControllers");
-const fetchuser = require("../middleware/fetchuser");
 const auth = require("../middleware/auth");
 
 router.post("/add", auth, gameControllers.controllers.postScore);

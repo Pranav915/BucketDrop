@@ -31,7 +31,7 @@ export const login = (userDetails, navigate) => {
       const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
       dispatch(setUserDetails(userDetails));
-      navigate("/game");
+      navigate("/home");
     }
   };
 };
@@ -48,7 +48,7 @@ export const register = (userDetails, navigate) => {
       localStorage.setItem("user", JSON.stringify(userDetails));
 
       dispatch(setUserDetails(userDetails));
-      navigate("/game");
+      navigate("/home");
     }
   };
 };

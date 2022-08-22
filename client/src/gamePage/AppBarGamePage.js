@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import DropdownMenu from "./DropdownMenu";
+import React, { useEffect, useRef } from "react";
 import { IconButton } from "@mui/material";
 import PauseIcon from "@mui/icons-material/PauseCircle";
 import PlayIcon from "@mui/icons-material/PlayCircle";
@@ -7,6 +6,7 @@ import { logout } from "../shared/utils/auth";
 import { getActions } from "../app/actions/gameActions";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { imgArray } from "./componentsImages";
 
 const AppBarGamePage = ({
   gameState,
@@ -16,6 +16,9 @@ const AppBarGamePage = ({
   score,
   setScore,
   postScore,
+  setX,
+  setY,
+  setIdx,
 }) => {
   let intervalRef = useRef();
   const navigate = useNavigate();
@@ -44,6 +47,20 @@ const AppBarGamePage = ({
     });
   };
 
+  const handleRestart = () => {
+    setScore(0);
+    setTime(60);
+    setGameState(false);
+    clearInterval(intervalRef.current);
+    setIdx(Math.floor(Math.random() * imgArray.length));
+    setX(Math.floor(Math.random() * 1000));
+    setY(90);
+  };
+
+  const navigateHome = () => {
+    navigate("/home");
+  };
+
   const handleChangeGameState = () => {
     setGameState(!gameState);
     if (gameState) {
@@ -55,13 +72,23 @@ const AppBarGamePage = ({
 
   return (
     <>
-      <nav className="container flex justify-between px-4 py-3 mx-auto bg-purple-600 fixed top-0">
+      <nav className="container flex justify-between px-4 py-3 mx-auto bg-purple-600">
         <div>
           <h3 className="text-2xl font-medium text-yellow-50 align-middle">
             BucketDrop
           </h3>
         </div>
+
         <div className="hidden space-x-8 lg:flex">
+          <div className="text-l font-semibold text-white">
+            <button
+              className="bg-white hover:bg-gray-200 text-black py-2 px-4 rounded inline-flex items-center m-1"
+              onClick={navigateHome}
+            >
+              <i class="fas fa-home mr-1"></i>
+              Home
+            </button>
+          </div>
           <div>
             <div className="text-xl font-semibold text-white">Time</div>
             <div className="text-xl font-semibold w-max m-auto bg-white py-1 px-2 mt-1 rounded-full">
@@ -86,6 +113,15 @@ const AppBarGamePage = ({
               <p>{score}</p>
             </div>
           </div>
+          <div className="text-l font-semibold text-white">
+            <button
+              className="bg-white hover:bg-gray-200 text-black py-2 px-4 rounded inline-flex items-center m-1"
+              onClick={handleRestart}
+            >
+              <i class="fas fa-undo mr-1"></i>
+              Play Again
+            </button>
+          </div>
         </div>
 
         <div>
@@ -97,9 +133,9 @@ const AppBarGamePage = ({
             Logout
           </button>
         </div>
-        <div className="lg:hidden">
+        {/* <div className="lg:hidden">
           <DropdownMenu />
-        </div>
+        </div> */}
       </nav>
     </>
   );
